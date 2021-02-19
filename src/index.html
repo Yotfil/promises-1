@@ -9,8 +9,26 @@
         <script src="./main.js"></script>
     </head>
     <body>
+        <span id="puntaje" class="puntaje">Puntaje: 000</span>
+
         <main>
-            <h1>Estamos listos!</h1>
+            <h2 id="pregunta">Mi pregunta es...</h2>
+            <h3 id="categoria">..Categoria..</h3>
+
+            <form id="form">
+                <input type="text" placeholder="Respuesta..." id="respuesta" />
+                <button>➡️</button>
+            </form>
+
+            <div id="negative" class="answer">
+                <span>❎</span>
+                <p id="respuestaCorrecta">La respuesta correcta era...</p>
+            </div>
+
+            <div id="positive" class="answer">
+                <span>✅</span>
+                <p>Respuesta correcta!</p>
+            </div>
         </main>
     </body>
 </html>

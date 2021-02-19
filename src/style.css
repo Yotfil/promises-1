@@ -116,3 +116,31 @@ main {
 }
 
 /* Aqui comenzamos */
+main {
+    background: white;
+    color: black;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: auto;
+    gap: 20px;
+}
+
+input[type='text'] {
+    font-size: 1.5rem;
+}
+
+.puntaje {
+    padding: 2rem;
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--dk-pink);
+}
+
+.answer {
+    text-align: center;
+}

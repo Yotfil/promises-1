@@ -1,129 +1,67 @@
-console.log(1);
+/* eslint-disable prefer-destructuring */
+let elementosDOM = {
+    categoria: null,
+    pregunta: null,
+    form: null,
+    respuesta: null,
+    negative: null,
+    respuestaCorrecta: null,
+    positive: null,
+};
 
-window.addEventListener('DOMContentLoaded', function () {
-    console.log(2);
-});
+let preguntaActual = null;
+let puntaje = 0;
 
-function factorial(x) {
-    // if number is 0
-    if (x === 0) {
-        return 1;
+window.addEventListener('DOMContentLoaded', function() {
+    console.log('el DOM esta listo');
+
+    for (const llave of Object.keys(elementosDOM)) {
+        elementosDOM[llave] = document.getElementById(llave);
     }
 
-    // if number is positive
-
-    return x * factorial(x - 1);
-}
-
-function factorialConPromesas(x) {
-    // ❎
-    return new Promise(function (resolver, rechazar) {
-        if (x < 0) {
-            rechazar(new Error('Como va a usar un negativo mano?'));
-        }
-
-        // ✅
-        // if number is 0
-        if (x === 0) {
-            resolver(1);
-        }
-
-        // if number is positive
-        resolver(x * factorial(x - 1));
-    });
-}
-
-function esperar(cuanto) {
-    return new Promise(function (resolver, rechazar) {
-        setTimeout(
-            function () {
-                resolver();
-            },
-            cuanto * 1000 // milisegundos
-        );
-    });
-}
-
-esperar(10).then(function () {
-    console.log('han pasado 10 segundos');
+    /*
+    Aqui debemos agregar los event listener del formulario
+    elementosDOM.form.addEve...
+    */
 });
 
-console.log('Yo no me voy a aguantar 10seg');
+function compareAnswer() {
+    // comprara lo que hay en el input (elementosDOM.respuesta) con preguntaActual.answer
+    // ...
+    // Muestra negative o positive
+    // ...
+    // Agrega el preguntaActual.difficulty al puntaje y muestralo
+    // ...
+    // Despues de X segundos, llama de nuevo a traerPregunta
+}
 
-console.time('sinpromesa');
-factorialConPromesas(1000)
-    .then(function (valor) {
-        console.log(valor + 1, 'promesa');
-    })
-    .catch(function (error) {
-        console.error(`Algo malio sal ${error.message}`);
-    });
-console.timeEnd('sinpromesa');
+function mostrarPregunta(data) {
+    preguntaActual = data[0];
+    console.log(preguntaActual);
 
-let resultNormal = factorial(1000);
+    // Poner toda la info
+    elementosDOM.pregunta.innerText = preguntaActual.question;
+    elementosDOM.categoria.innerText = preguntaActual.category.title;
+    elementosDOM.negative.innerText = `La respuesta correcta era "${preguntaActual.answer}"`;
 
-// // fn => P <== funcion => 2 Fn
+    // Esconder las respuestas
+    elementosDOM.negative.style.display = 'none';
+    elementosDOM.positive.style.display = 'none';
+}
 
-// mostrarTexto('askldjasd ads da sd asd a ds asd ').then(function () {
-//     personaje.mostrar();
-// });
-
-XMLHttpRequest; // callbacks
-
-fetch(
-    'https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json'
-)
-    .then(function (response) {
-        // Response
-        return response.json();
-    })
-    .then(function (value) {
-        console.log(value);
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
-
-console.log('no me espero el fetch');
-
-function mejorFetch(url) {
-    return new Promise(function (resolve, reject) {
-        fetch(url)
-            .then(function (response) {
-                // Response
-                if (response.ok === false) {
-                    reject(response);
-                }
-
+function traerPregunta() {
+    console.log('traerPregunta');
+    fetch('http://jservice.io/api/random')
+        .then(function(response) {
+            if (response.ok) {
                 return response.json();
-            })
-            .then(function (value) {
-                resolve(value);
-            })
-            .catch(function (error) {
-                reject(error);
-            });
-    });
+            }
+        })
+        .then(mostrarPregunta);
+    // Es igual que
+    // .then(function(data){
+    //     mostrarPregunta(data)
+    // });
 }
 
-mejorFetch(
-    'https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733d864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json'
-).then(function (info) {
-    console.log(info);
-});
-
-// Callback hell
-function uno(info, callback, recallback) {
-    callback(info, recallback);
-}
-uno(
-    1,
-    function (info, callback) {
-        console.log(info);
-    },
-    function (params) {}
-);
-
-mejorFetch('http://jservice.io/api/clues').then(function (data) {
-    console.log(data);
-});
+traerPregunta();
