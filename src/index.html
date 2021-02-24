@@ -8,26 +8,43 @@
         <link rel="stylesheet" href="./style.css" />
         <script src="./main.js"></script>
     </head>
+
     <body>
-        <span id="puntaje" class="puntaje">Puntaje: 000</span>
+        <span class="puntaje">Puntaje: <span id="puntaje">000</span> </span>
+
+        <select name="" id="category">
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+            <option value="asdads">Hola soy el option</option>
+        </select>
 
         <main>
             <h2 id="pregunta">Mi pregunta es...</h2>
-            <h3 id="categoria">..Categoria..</h3>
+            <h3 id="categoria">Categoría...</h3>
 
             <form id="form">
-                <input type="text" placeholder="Respuesta..." id="respuesta" />
-                <button>➡️</button>
+                <input
+                    type="text"
+                    id="respuesta"
+                    name=""
+                    placeholder="Escribe tu respuesta acá..."
+                    id=""
+                />
+                <button type="submit">Enviar</button>
             </form>
 
-            <div id="negative" class="answer">
-                <span>❎</span>
-                <p id="respuestaCorrecta">La respuesta correcta era...</p>
+            <div id="negative">
+                <span>x</span>
+                <p id="answer">La respuesta es...</p>
             </div>
-
-            <div id="positive" class="answer">
-                <span>✅</span>
-                <p>Respuesta correcta!</p>
+            <div id="correct">
+                <span>Bien</span>
+                <p>¡Excelente trabajo!</p>
             </div>
         </main>
     </body>

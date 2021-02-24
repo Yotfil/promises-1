@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 console.log(1);
 
 window.addEventListener('DOMContentLoaded', function () {
@@ -99,6 +100,30 @@ function mejorFetch(url) {
             })
             .then(function (value) {
                 resolve(value);
+=======
+fetch('https://jservice.io/api/clues')
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+function betterFetch(url) {
+    return new Promise(function (resolve, reject) {
+        fetch(url)
+            .then(function (response) {
+                if (!response.ok) {
+                    reject(new Error('Este es un error'));
+                } else {
+                    return response.json();
+                }
+            })
+            .then(function (data) {
+                resolve(data);
+>>>>>>> c48f6d51729f8b140a23ce156052e36002ca0e1f
             })
             .catch(function (error) {
                 reject(error);
@@ -106,6 +131,7 @@ function mejorFetch(url) {
     });
 }
 
+<<<<<<< HEAD
 mejorFetch(
     'https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733d864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json'
 ).then(function (info) {
@@ -127,3 +153,12 @@ uno(
 mejorFetch('http://jservice.io/api/clues').then(function (data) {
     console.log(data);
 });
+=======
+betterFetch('https://jservice.io/api/clues')
+    .then(function (data) {
+        console.log(data);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+>>>>>>> c48f6d51729f8b140a23ce156052e36002ca0e1f
