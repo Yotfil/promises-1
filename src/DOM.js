@@ -1,5 +1,4 @@
 const elementosDOM = {
-    categoria: null,
     pregunta: null,
     form: null,
     respuesta: null,
@@ -7,6 +6,7 @@ const elementosDOM = {
     respuestaCorrecta: null,
     positive: null,
     puntaje: null,
+    category: null,
 };
 
 // Side effect

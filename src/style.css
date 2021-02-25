@@ -192,3 +192,13 @@ div {
 div > span {
     margin-bottom: 10px;
 }
+
+select {
+    width: 30%;
+    padding: 10px 15px;
+    border: 1px dashed rgb(255, 0, 128);
+    border-radius: 4px;
+    background-color: rgb(10, 9, 9);
+    color: white;
+    margin-bottom: 20px;
+ }

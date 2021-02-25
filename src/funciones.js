@@ -23,7 +23,6 @@ export function mostrarPregunta(data) {
 
     // Poner toda la info
     elementosDOM.pregunta.innerText = state.preguntaActual.question;
-    elementosDOM.categoria.innerText = state.preguntaActual.category.title;
     elementosDOM.negative.innerText = `La respuesta correcta era "${state.preguntaActual.answer}"`;
 
     // Esconder las respuestas
@@ -35,7 +34,9 @@ export function traerPregunta() {
     console.log('traerPregunta');
     // Crear esta URL de forma dinamica
     // categoria = seleccionada en el HTML (select)
-    fetch('http://jservice.io/api/clues?category=XXXXX&offset=XXXX')
+    fetch(
+        `http://jservice.io/api/clues?category=${state.categoryID}&offset=${state.contador}`
+    )
         .then(function (response) {
             if (response.ok) {
                 return response.json();
@@ -48,6 +49,15 @@ export function traerPregunta() {
     // });
 }
 
+export function mostrarCategorias(info) {
+    let options = '';
+    for (const data of info) {
+        options += `<option value="${data.id}">${data.title}</option>`;
+    }
+    state.categoryID = info[0].id;
+    elementosDOM.category.innerHTML = options;
+}
+
 export function traerCategorias() {
     fetch('http://jservice.io/api/categories?count=10&offset=1')
         .then(function (response) {
@@ -56,13 +66,15 @@ export function traerCategorias() {
                 return response.json();
             }
         })
-        .then(function (info) {
-            // construir el HTML Select con los options
-            // llamar al traerPregunta
-            console.log(info, 'traerCategorias');
-        });
+        .then(mostrarCategorias);
 }
 
+export function cambiarCategorias(dato) {
+    state.categoryID = dato;
+    state.contador = 0;
+    console.log(state.categoryID, 'categoria id ');
+    traerPregunta();
+}
 // GET ***
 // https://www.udemy.com/course/typescript-2020/?fbclid=IwAR2qC2U-tr1o7NncQUVjO8s_JJIXI_VoylMaYuduBTykOzbpiFBUt8bK4iU&couponCode=CODIFICANDOLO02
 
