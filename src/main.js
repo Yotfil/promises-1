@@ -8,18 +8,24 @@ import {
 } from './funciones';
 import state from './state';
 
+
 window.addEventListener('DOMContentLoaded', function () {
     console.log('el DOM esta listo');
 
     elementosDOM.form.addEventListener('submit', function (e) {
         e.preventDefault();
-        let respuestaUsuario = elementosDOM.respuesta.value;
-        elementosDOM.respuesta.value = '';
-        compareAnswer(respuestaUsuario);
-        setTimeout(traerPregunta, 3000);
-        state.contador += 1;
-        console.log(state.contador, 'contadorcito');
-        // cambiar el contador + 1
+        if (elementosDOM.respuesta.value) {
+            elementosDOM.send.classList.remove('disabled');
+            let respuestaUsuario = elementosDOM.respuesta.value;
+            elementosDOM.respuesta.value = '';
+            compareAnswer(respuestaUsuario);
+            setTimeout(traerPregunta, 3000);
+            state.contador += 1;
+            // cambiar el contador + 1
+        } else {
+            alert('escribe una respuesta');
+        }
+
     });
 
     elementosDOM.category.addEventListener('change', function () {

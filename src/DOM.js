@@ -4,9 +4,11 @@ const elementosDOM = {
     respuesta: null,
     negative: null,
     respuestaCorrecta: null,
-    positive: null,
+    correct: null,
     puntaje: null,
     category: null,
+    send: null,
+
 };
 
 // Side effect

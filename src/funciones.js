@@ -15,6 +15,9 @@ export function compareAnswer(respuestaUsuario) {
     ) {
         state.puntaje += state.preguntaActual.value;
         elementosDOM.puntaje.innerText = state.puntaje;
+        elementosDOM.correct.style.display = '';
+    } else {
+        elementosDOM.negative.style.display = '';
     }
 }
 
@@ -27,7 +30,7 @@ export function mostrarPregunta(data) {
 
     // Esconder las respuestas
     elementosDOM.negative.style.display = 'none';
-    // elementosDOM.positive.style.display = 'none';
+    elementosDOM.correct.style.display = 'none';
 }
 
 export function traerPregunta() {
@@ -54,7 +57,7 @@ export function mostrarCategorias(info) {
     for (const data of info) {
         options += `<option value="${data.id}">${data.title}</option>`;
     }
-    state.categoryID = info[0].id;
+     state.categoryID = info[0].id;
     elementosDOM.category.innerHTML = options;
 }
 
@@ -67,6 +70,11 @@ export function traerCategorias() {
             }
         })
         .then(mostrarCategorias);
+
+export function cambiarCategorias(dato) {
+    state.categoryID = dato;
+    state.contador = 0;
+
 }
 
 export function cambiarCategorias(dato) {

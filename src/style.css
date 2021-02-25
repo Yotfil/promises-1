@@ -187,10 +187,14 @@ div {
     align-items: center;
     justify-content: center;
     margin: 20px;
-    display: none;
 }
 div > span {
     margin-bottom: 10px;
+}
+
+
+.disabled {
+    background-color: gray;
 }
 
 select {
@@ -202,3 +206,4 @@ select {
     color: white;
     margin-bottom: 20px;
  }
+
