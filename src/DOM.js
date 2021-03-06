@@ -8,8 +8,10 @@ const elementosDOM = {
     puntaje: null,
     category: null,
     send: null,
-
 };
+
+let hola = 4;
+console.log(hola);
 
 // Side effect
 window.addEventListener('DOMContentLoaded', function () {
